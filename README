@@ -1,0 +1,18 @@
+docker doc 说明
+
+1.文件夹为 docker 做的项目名，里面包括 docker 的镜像和实施，同时每一个目录下面有一个 README 来作为教程，告知怎样实施,有些特别的文件夹没有README可以参照总的 doc 文档；
+2.docker 镜像导入和导出命令，每个文件夹的 tar 打包的镜像都能通用：
+导入：
+    sudo docker load --input ubuntu_14.04.tar
+    或者 sudo docker load < ubuntu_14.04.tar
+    其中 ubuntu_14.04.tar 为导出的镜像包
+导出：
+    sudo docker save -o ubuntu_14.04.tar ubuntu:14.04
+    ubuntu_14.04.tar 为导出包名，ubuntu:14.04 的 ubnntu是 REPOSITORY 名，14.04 为 TAG 名。
+3.docker 容器导入和导出命令，每个文件夹的 tar 打包的容器都能通用：(这种容器迁移的很少，一般建议迁移镜像)
+导入：    
+    sudo cat ubuntu.tar | sudo docker import - 100wifi/mongodb
+    100wifi/mongodb 为导入 docker 的镜像名
+导出： 
+    sudo docker export 7691a814370e > ubuntu.tar
+    7691a814370e 为容器 ID，ubuntu.tar 为容器名，一般与容器名或者应用名一致即可，如果有版本也可以加上版本号。
